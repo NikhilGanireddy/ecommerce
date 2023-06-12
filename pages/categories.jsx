@@ -20,6 +20,7 @@ export default function Categories() {
     const fetchCategories = () => {
         axios.get("/api/categories").then(result => {
             setCategories(result.data)
+            console.log( categories)
         })
     }
     const saveCategory = async (ev) => {
@@ -103,7 +104,7 @@ export default function Categories() {
                             type={"button"}>Add new property
                     </button>
                     {properties.length > 0 && properties.map((property, index) => {
-                        return (<div className={"flex gap-2 items-center justify-center"}>
+                        return (<div key={index} className={"flex gap-2 items-center justify-center"}>
                             <input
                                 type={"text"}
                                 placeholder={"Property Name (Color, RAM....."}
@@ -151,8 +152,8 @@ export default function Categories() {
                 </tr>
                 </thead>
                 <tbody>
-                {categories.length > 0 && categories.map(category => {
-                    return (<tr>
+                {categories.length > 0 && categories.map((category) => {
+                    return (<tr key={category._id}>
                         <td className={"text-center"}>{category.name}</td>
                         <td className={"text-center"}>{category?.parent?.name}</td>
                         <td className={"p-2 flex justify-center gap-4 items-center"}>

@@ -31,7 +31,7 @@ export default function Products() {
                 </thead>
                 <tbody>
                 {products.map(productData => {
-                    return <tr>
+                    return <tr key={productData._id}>
                         <td>{productData.title}</td>
                         <td className={`flex gap-4 justify-center items-center`}>
                             <Link href={"/products/edit/" + productData._id}>
