@@ -20,7 +20,7 @@ export default function Categories() {
     const fetchCategories = () => {
         axios.get("/api/categories").then(result => {
             setCategories(result.data)
-            console.log( categories)
+            console.log(categories)
         })
     }
     const saveCategory = async (ev) => {
@@ -28,13 +28,18 @@ export default function Categories() {
         if (editedCategory) {
             await axios.put("/api/categories", {
                 name, parentCategory, _id: editedCategory._id, properties: properties.map((p) => ({
-                        name: p.name, value: p.value.split(",")
-                    }))
-            }).then(setEditedCategory(null))
+                    name: p.name, value: p.value.split(",")
+                }))
+            }).then(() => {
+                setEditedCategory(null)
+
+            })
         } else {
             await axios.post("/api/categories", {name, parentCategory, properties})
         }
         setName("")
+        setProperties([])
+        setParentCategory("")
         fetchCategories()
     }
 
@@ -42,6 +47,9 @@ export default function Categories() {
         setEditedCategory(category)
         setName(category.name)
         setParentCategory(category.parent?._id)
+        setProperties(category.properties.map(({name, value}) => ({
+            name, value: value.join(",")
+        })))
     }
 
     function deleteCategory(category) {
