@@ -2,26 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.btn {
+    @apply px-6 py-2 rounded-lg bg-gray-900 text-white outline-none w-max
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.btn-red {
+    @apply px-6 py-2 rounded-lg bg-red-600 text-white outline-none w-max
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+input, textarea ,select{
+    @apply w-full border border-gray-300 rounded-lg px-2 py-2 outline-none mb-2 transition duration-100
 }
+
+input:focus, textarea:focus,select:focus {
+    @apply border-gray-900
+}
+
+label {
+    @apply text-lg text-gray-900 font-semibold mb-2 ml-1
+}
+
+table.table-basic {
+    @apply w-full rounded-xl p-2 border
+}
+
+table.table-basic thead {
+    @apply text-2xl font-semibold bg-gray-900 text-white
+}
+
+table.table-basic tr td {
+    @apply px-4 py-1 border capitalize
+}
+
+table.table-basic a {
+    @apply inline-flex gap-2 bg-gray-900 text-white items-center justify-center rounded-lg px-2 py-1
+}
+
